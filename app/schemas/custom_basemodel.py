@@ -1,5 +1,4 @@
 from pydantic import BaseModel, ConfigDict
-from pydantic.alias_generators import to_camel
 
 
 class CustomBaseModel(BaseModel):
@@ -9,7 +8,6 @@ class CustomBaseModel(BaseModel):
     Internal Python field names remain in snake_case,
     while API aliases can use PascalCase.
     """
-
     model_config = ConfigDict(
         # Reject fields that are not defined in the model.
         # Helps catch unexpected or incorrect input fields.

@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.routers import all_router_collection
-
+from prometheus_fastapi_instrumentator import Instrumentator
 
 app = FastAPI(
     title="Base Framework for FastAPI Applications",
@@ -18,3 +18,5 @@ app = FastAPI(
 )
 
 app.include_router(router=all_router_collection)
+
+Instrumentator().instrument(app)

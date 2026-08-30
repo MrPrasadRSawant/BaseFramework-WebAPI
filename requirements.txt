@@ -2,3 +2,5 @@ fastapi
 flake8
 pydantic
 prometheus-fastapi-instrumentator
+prometheus-client
+uvicorn

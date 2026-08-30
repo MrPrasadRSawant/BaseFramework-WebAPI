@@ -3,7 +3,6 @@ from .v1 import (
 )
 from fastapi import APIRouter
 
-
 router = APIRouter()
 
 

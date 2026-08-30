@@ -1,8 +1,8 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Response
 from ...schemas import (
     HealthResponse
 )
-
+from prometheus_client import CONTENT_TYPE_LATEST, generate_latest
 
 router = APIRouter(
     tags=["System"],
@@ -28,4 +28,19 @@ async def health_check():
         version_major=1,
         version_minor=0,
         version_patch=0
+    )
+
+
+@router.get(
+    "/metrics",
+    summary="Get application metrics",
+    include_in_schema=True,
+)
+async def metrics() -> Response:
+    """
+    Exposes application metrics for Prometheus scraping.
+    """
+    return Response(
+        content=generate_latest(),
+        media_type=CONTENT_TYPE_LATEST,
     )
