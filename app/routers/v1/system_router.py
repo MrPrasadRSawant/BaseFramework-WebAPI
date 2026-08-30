@@ -1,4 +1,7 @@
 from fastapi import APIRouter
+from ...schemas import (
+    HealthResponse
+)
 
 
 router = APIRouter(
@@ -11,7 +14,7 @@ router = APIRouter(
     "/health",
     summary="Health Check Endpoint",
     response_description="Returns the health status of the application.",
-    response_model=dict
+    response_model=HealthResponse
 )
 async def health_check():
     """
@@ -20,4 +23,9 @@ async def health_check():
     Returns:
         dict: A dictionary containing the health status of the application.
     """
-    return {"status": "healthy"}
+    return HealthResponse(
+        status="OK",
+        version_major=1,
+        version_minor=0,
+        version_patch=0
+    )
